@@ -1,0 +1,34 @@
+# /etc/conf.d/ghidra: OpenRC configuration for Ghidra Server
+
+# CGroups2 settings
+# (change these to fit your configuration)
+rc_cgroup_settings="
+cpu.max 800000 100000
+memory.max 7G
+io.weight 100
+"
+
+# Path to the JRE to use for the Ghidra server.
+JAVA="/usr/lib/jvm/java-11-openjdk/bin/java"
+
+# Any additional standard Java arguments to add to the JVM
+# command line.
+JAVA_ARGS="-Xms512M -Xmx6G"
+
+# The user to use to run the Ghidra server.
+#
+# This user does not need any administrative groups
+# and (thanks to the defaults) can be any normal user.
+GHIDRA_USER="ghidra"
+
+# Path to the Ghidra installation to use.
+# It is best to use a unversioned folder name
+# so upgrades are easy to handle.
+GHIDRA_HOME="/srv/ghidra/ghidra"
+
+# The path where Ghidra repositories should be stored.
+GHIDRA_REPO_PATH="/srv/ghidra/repositories"
+
+# Ghidra server arguments.
+# Refer to existing Ghida server documentation
+GHIDRA_ARGS="-a0 ${GHIDRA_REPO_PATH}";
